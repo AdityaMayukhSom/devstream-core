@@ -1,3 +1,6 @@
 spring:
   application:
     name: omnistream
+
+server:
+  port: 6969
