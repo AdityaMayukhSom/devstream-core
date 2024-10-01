@@ -43,13 +43,13 @@ public class AuthController {
     public ModelAndView createUser(UserDto userDto, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
-        if (!userService.doesUserExistsByEmail(userDto.getEmail())) {
+        if (userDto != null && !userService.doesUserExistsByEmail(userDto.getEmail())) {
             authService.registerUser(userDto);
             modelAndView.addObject("successMessage", "user has been created successfully");
             modelAndView.addObject("user", new UserDto());
             modelAndView.setViewName("login");
         } else {
-            bindingResult.rejectValue("email", "error.user", "an user exists with the given email");
+            bindingResult.rejectValue("email", "error.user", (userDto == null) ? "could not parse user object" : "an user exists with the given email");
         }
 
         return modelAndView;

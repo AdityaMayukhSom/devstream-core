@@ -14,7 +14,9 @@ public interface UserMapper {
 
     public UserDto userToUserDto(User user);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "enabled", ignore = true)
     @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "authorities", ignore = true)
     public User userDtoToUser(UserDto userDto);
 }

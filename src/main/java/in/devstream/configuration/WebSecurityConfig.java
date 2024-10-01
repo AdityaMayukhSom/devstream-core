@@ -26,12 +26,14 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+        // reference: https://stackoverflow.com/questions/56388865/spring-security-configuration-httpsecurity-vs-websecurity
         httpSecurity
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(customize -> {
                     customize
                             .requestMatchers("/").permitAll()
                             .requestMatchers("/login").permitAll()
+                            .requestMatchers("/signup").permitAll()
                             .requestMatchers("/dashboard/**").hasAuthority("ADMIN")
                             .anyRequest().authenticated();
                 })

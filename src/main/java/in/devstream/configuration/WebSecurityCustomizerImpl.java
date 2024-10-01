@@ -5,11 +5,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomWebSecurityCustomizer implements WebSecurityCustomizer {
+public class WebSecurityCustomizerImpl implements WebSecurityCustomizer {
 
     @Override
     public void customize(WebSecurity webSecurity) {
         // Spring Security should completely ignore URLs starting with /resources/
+        // reference: https://stackoverflow.com/questions/56388865/spring-security-configuration-httpsecurity-vs-websecurity
         webSecurity
                 .ignoring()
                 .requestMatchers(
