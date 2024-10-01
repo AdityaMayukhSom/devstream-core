@@ -39,3 +39,7 @@ out/
 ### Development Configuration Files ###
 **/src/main/**/application-development.yml
 **/src/test/**/application-development.yml
+
+.env
+.env.production
+!**/.env.*

@@ -1,0 +1,25 @@
+services:
+  mongo:
+    image: mongo:7.0-jammy
+    restart: always
+    container_name: mongo
+    ports:
+      - 27017:27017 # make sure we don't have another mongo container running on same port
+    env_file:
+      - .env
+    volumes:
+      - mongo_volume:/data/db/
+
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432  # make sure you don't have another container running on 5432
+    env_file:
+      - .env
+
+volumes:
+  mongo_volume:
+  postgres_volume:
