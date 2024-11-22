@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -17,7 +16,7 @@ public class AuthSuccessHandlerImpl implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
             HttpServletResponse response, Authentication authentication)
-            throws IOException, ServletException {
+            throws IOException {
         // reference: https://www.youtube.com/watch?v=ycemlr5uXD0
         response.setStatus(HttpServletResponse.SC_OK);
         for (GrantedAuthority grantedAuth : authentication.getAuthorities()) {
