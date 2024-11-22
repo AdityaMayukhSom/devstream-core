@@ -12,10 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AuthConfig {
 
     @Autowired
-    UserDetailsService userDetailsService;
+    PasswordEncoder passwordEncoder;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    UserDetailsService userDetailsService;
 
     @Bean
     public AuthenticationProvider getAuthenticationProvider() {
@@ -23,5 +23,4 @@ public class AuthConfig {
         daoAuthProvider.setUserDetailsService(this.userDetailsService);
         return daoAuthProvider;
     }
-
 }
