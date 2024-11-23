@@ -1,13 +1,15 @@
 spring:
   application:
     name: omnistream
-  data:
-    mongodb:
-      authentication-database: admin
-      username: root
-      password: example
-      host: localhost
-      port: 27017
-      database: devstream
+  jpa:
+    hibernate:
+      show-sql: false
+      ddl-auto: update
+  datasource:
+    # https://stackoverflow.com/questions/47580247/optional-environment-variables-in-spring-app
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/${MYSQL_DATABASE}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+
 server:
   port: 6969
