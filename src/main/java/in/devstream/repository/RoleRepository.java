@@ -1,10 +1,10 @@
 package in.devstream.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.Repository;
 
 import in.devstream.model.Role;
 
-public interface RoleRepository extends MongoRepository<Role, String> {
+public interface RoleRepository extends Repository<Role, String> {
 
     Role findByRole(String role);
 }

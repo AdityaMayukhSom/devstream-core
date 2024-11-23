@@ -6,25 +6,27 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.IndexDirection;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Document(collection = "user")
+@Entity
+@Table(name = "users", indexes = {
+    @Index(unique = true, columnList = "email")})
 public class User implements UserDetails {
 
     @Id
     private String id;
 
-    @Indexed(unique = true, direction = IndexDirection.DESCENDING)
     private String email;
 
     private String password;
@@ -33,7 +35,8 @@ public class User implements UserDetails {
 
     private boolean enabled;
 
-    @DBRef
+    // https://stackoverflow.com/questions/42334475/spring-jpa-users-roles-authentication-how-do-i-avoid-duplicate-role-entries
+    @OneToMany(mappedBy = "role", cascade = CascadeType.DETACH, orphanRemoval = false)
     private Set<Role> roles;
 
     @Override
