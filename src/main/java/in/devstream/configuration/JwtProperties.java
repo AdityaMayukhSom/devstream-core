@@ -21,6 +21,8 @@ public class JwtProperties {
     private String audience;
     private String secretKey;
 
+    // https://projectlombok.org/features/GetterSetter
+    // AccessLevel NONE removes access to anyone outside class, hence no getter is created
     @Getter(AccessLevel.NONE)
     private String ttlInSeconds;
 
