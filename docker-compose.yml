@@ -1,25 +1,14 @@
 services:
-  mongo:
-    image: mongo:7.0-jammy
+  mysql:
+    image: mysql:8.4.3
     restart: always
-    container_name: mongo
-    ports:
-      - "27017:27017" # make sure we don't have another mongo container running on same port
+    container_name: devstream-mysql
     env_file:
       - .env
-    volumes:
-      - mongo_volume:/data/db/
-
-  postgres:
-    image: postgres
-    restart: always
-    volumes:
-      - postgres_volume:/var/lib/postgresql/data
     ports:
-      - "5432:5432"  # make sure you don't have another container running on 5432
-    env_file:
-      - .env
+      - "3306:3306" # make sure you don't have another container running on 3306
+    volumes:
+      - mysql_volume:/var/lib/mysql
 
 volumes:
-  mongo_volume:
-  postgres_volume:
+  mysql_volume:
