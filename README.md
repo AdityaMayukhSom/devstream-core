@@ -15,6 +15,11 @@
    ```
 6.  [\[Spring Boot bootRun with continuous build\]](https://stackoverflow.com/questions/52092504/spring-boot-bootrun-with-continuous-build)
 
+Before running the application, populate the `.env` file following the `.env.example` file.
+Then source the environment variables using the `read-env-file.ps1` script found in scripts directory
+using the command `Read-Env-File .env`.  This is required as we use environment variables in the `application.yml`
+file, but not required in case of docker compose as it can directly use the env file using `env_file` property.
+
 ```sh
 ./gradlew build --continuous
 ./gradlew bootRun
