@@ -1,10 +1,12 @@
 package in.devstream.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 
 import in.devstream.model.User;
 
 public interface UserRepository extends CrudRepository<User, String> {
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 }

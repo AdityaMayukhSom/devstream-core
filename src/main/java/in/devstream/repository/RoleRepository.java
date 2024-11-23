@@ -1,10 +1,12 @@
 package in.devstream.repository;
 
-import org.springframework.data.repository.Repository;
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
 
 import in.devstream.model.Role;
 
-public interface RoleRepository extends Repository<Role, String> {
+public interface RoleRepository extends CrudRepository<Role, String> {
 
-    Role findByRole(String role);
+    Optional<Role> findByRole(String role);
 }
