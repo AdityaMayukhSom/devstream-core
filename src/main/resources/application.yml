@@ -3,13 +3,20 @@ spring:
     name: omnistream
   jpa:
     hibernate:
-      show-sql: false
+      show-sql: true
       ddl-auto: update
-  datasource:
+  datasource: 
     # https://stackoverflow.com/questions/47580247/optional-environment-variables-in-spring-app
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/${MYSQL_DATABASE}
     username: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
+
+auth:
+  jwt:
+    issuer: devstream.in
+    audience: omnistream-application
+    ttl-in-seconds: ${JWT_TTL_IN_SECONDS}
+    secret-key: ${JWT_AUTH_SECRET_KEY}
 
 server:
   port: 6969
