@@ -16,16 +16,11 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserDto findUserByEmail(String email) throws UserNotFoundException {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new UserNotFoundException();
-        }
-        return UserMapper.INSTANCE.userToUserDto(user);
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException());
+        return UserMapper.MAPPER.fromUser(user);
     }
 
     public boolean doesUserExistsByEmail(String email) {
-        User user = userRepository.findByEmail(email);
-        return user != null;
+        return userRepository.findByEmail(email).isPresent();
     }
-
 }

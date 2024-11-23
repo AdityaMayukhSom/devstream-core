@@ -1,7 +1,6 @@
 package in.devstream.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import in.devstream.dto.UserDto;
@@ -10,13 +9,16 @@ import in.devstream.model.User;
 @Mapper
 public interface UserMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+    UserMapper MAPPER = Mappers.getMapper(UserMapper.class);
 
-    public UserDto userToUserDto(User user);
+    public UserDto fromUser(User user);
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "enabled", ignore = true)
-    @Mapping(target = "roles", ignore = true)
-    @Mapping(target = "authorities", ignore = true)
-    public User userDtoToUser(UserDto userDto);
+    default public User toUser(UserDto userDto) {
+        User user = new User(userDto.getEmail(), userDto.getPassword(), userDto.getFullname());
+        user.setEnabled(true);
+        user.setAccountLocked(false);
+        user.setAccountExpired(false);
+        user.setCredentialsExpired(false);
+        return user;
+    }
 }
