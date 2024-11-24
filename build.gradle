@@ -45,6 +45,8 @@ dependencies {
 
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:latest'
 }
 
 tasks.named('test') {
