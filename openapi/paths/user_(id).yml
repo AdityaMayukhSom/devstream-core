@@ -1,0 +1,13 @@
+delete:
+  summary: Deletes user profile.
+  parameters:
+    - name: userID
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: User deleted successfully.
+    404:
+      description: User with given ID not found.
