@@ -1,7 +1,6 @@
 type: object
 properties:
   status:
-    type: string
-    enum: ["success", "error"]
+    $ref: '../schemas/Status.yml'
   message:
     type: string

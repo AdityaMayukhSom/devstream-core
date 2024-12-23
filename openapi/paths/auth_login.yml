@@ -12,4 +12,4 @@ post:
       content:
         application/json:
           schema:
-            $ref: "../responses/AuthResponse.yml"
+            $ref: "../responses/LoginResponse.yml"

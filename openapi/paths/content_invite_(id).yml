@@ -8,7 +8,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: "../responses/InvitationActionResponse.yml"
+            $ref: "../responses/CollaborationActionResponse.yml"
             
 post:
   summary: Invite users to collaborate on content.
@@ -31,7 +31,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: "../responses/InvitationActionResponse.yml"
+          $ref: "../responses/CollaborationActionResponse.yml"
   responses:
     200:
       description: Invitation status updated.

@@ -4,4 +4,6 @@ properties:
     type: boolean
   privacy:
     type: string
-    enum: ["public", "private"]
+    enum: 
+      - Public
+      - Private

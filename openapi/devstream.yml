@@ -97,10 +97,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResponse'
+                $ref: '#/components/schemas/LoginResponse'
   /auth/register:
     post:
-      summary: Register a new user.
+      summary: Registers a new user.
       requestBody:
         required: true
         content:
@@ -113,7 +113,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResponse'
+                $ref: '#/components/schemas/RegisterResponse'
   /auth/refresh-token:
     post:
       summary: Refresh the authentication token.
@@ -129,7 +129,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthResponse'
+                $ref: '#/components/schemas/RefreshTokenResponse'
   /auth/forgot-password:
     post:
       summary: Request a password reset link.
@@ -214,7 +214,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InvitationActionResponse'
+                $ref: '#/components/schemas/CollaborationActionResponse'
     post:
       summary: Invite users to collaborate on content.
       parameters:
@@ -235,7 +235,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/InvitationActionResponse'
+              $ref: '#/components/schemas/CollaborationActionResponse'
       responses:
         '200':
           description: Invitation status updated.
@@ -324,8 +324,8 @@ components:
         privacy:
           type: string
           enum:
-            - public
-            - private
+            - Public
+            - Private
     UpdateUserSettingsRequest:
       type: object
       properties:
@@ -351,7 +351,7 @@ components:
           format: email
         password:
           type: string
-    AuthResponse:
+    LoginResponse:
       type: object
       properties:
         accessToken:
@@ -395,9 +395,26 @@ components:
         - username
         - email
         - password
+    Status:
+      type: string
+      enum:
+        - Success
+        - Error
+    RegisterResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
     RefreshTokenRequest:
       type: object
       properties:
+        refreshToken:
+          type: string
+    RefreshTokenResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
         refreshToken:
           type: string
     ForgotPasswordRequest:
@@ -474,14 +491,11 @@ components:
       required:
         - contentID
         - status
-    InvitationActionResponse:
+    CollaborationActionResponse:
       type: object
       properties:
         status:
-          type: string
-          enum:
-            - success
-            - error
+          $ref: '#/components/schemas/Status'
         message:
           type: string
     AccessType:
