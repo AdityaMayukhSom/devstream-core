@@ -1,9 +1,0 @@
-type: object
-properties:
-  notifications:
-    type: boolean
-  visibility:
-    type: string
-    enum:
-      - Public
-      - Private

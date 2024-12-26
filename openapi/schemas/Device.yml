@@ -1,6 +1,0 @@
-type: string
-description: Currently used device
-enum: 
-  - Web
-  - Android
-  - iOS

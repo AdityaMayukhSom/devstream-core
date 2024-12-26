@@ -1,6 +1,0 @@
-type: object
-properties:
-  totalContent:
-    type: integer
-  totalViews:
-    type: integer
