@@ -2,7 +2,6 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.3'
 	id 'io.spring.dependency-management' version '1.1.6'
-	id 'org.openapi.generator' version "7.10.0"
 }
 
 group = 'in'
@@ -52,38 +51,4 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-
-
-openApiGenerate {
-    generatorName = "spring"
-    inputSpec = "${projectDir}/openapi/devstream.yml"
-    outputDir = "${projectDir}/api/server"
-    apiPackage = "in.devstream.api"
-    modelPackage = "in.devstream.model"
-	modelNameSuffix = "Dto"
-
-	configOptions = [
-		// configPackage: "${openapiConfigPackage}",
-		// dateLibrary: "java8",
-		openApiNullable: "false",
-		disallowAdditionalPropertiesIfNotPresent: "false",
-		// groupId: "${group}",
-		hateoas: "false",
-		interfaceOnly: "true",
-		licenseName: "Unlicense",
-		singleContentTypes: "true", // Whether to select only one produces/consumes content-type by operation.
-		title: "${rootProject.name}",
-		unhandledException: "true", // Declare operation methods to throw a generic exception and allow unhandled exceptions
-		useTags: "true", // use tags for creating interface and controller classnames
-		useOptional: "true"
-	]
-	// delegatePattern = true
-}
-
-// https://blog.samzhu.dev/2021/05/26/How-to-automatically-generate-interface-and-Data-Transfer-Object-from-OpenAPI-yaml-file
-task buildTypeScriptSdk(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
-	generatorName = "typescript-axios"
-    inputSpec = "${projectDir}/openapi/devstream.yml"
-	outputDir = "${rootDir}/api/client/react"
 }
