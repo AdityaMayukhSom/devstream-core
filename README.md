@@ -26,3 +26,5 @@ To have `Read-Enf-File` or `New-Env-Example` command working in powershell, we f
 ./gradlew build --continuous
 ./gradlew bootRun
 ```
+
+1. Docker automatically looks for build-time environment variables in `.env`. If your environment variables are written in a different file, then run `docker compose --env-file [env filename] up --build`. See this link on how to set build-time environment variables: [docker-compose build environment variable](https://stackoverflow.com/questions/52429984/docker-compose-build-environment-variable). [Reference](https://stackoverflow.com/a/68831814)
