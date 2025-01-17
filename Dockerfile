@@ -1,4 +1,4 @@
-FROM gradle:8-jdk21-alpine AS cache
+FROM gradle:8.12.0-jdk21-alpine AS cache
 ENV GRADLE_USER_HOME /home/gradle/cache_home
 ENV APP_HOME /usr/app/
 RUN mkdir -p ${GRADLE_USER_HOME}
@@ -6,18 +6,13 @@ COPY build.gradle ${APP_HOME}
 WORKDIR ${APP_HOME}
 RUN gradle clean build -i || return 0
 
-FROM eclipse-temurin:21-jdk-alpine AS build-step
-ENV APP_HOME /usr/app/
+FROM gradle:8.12.0-jdk21-alpine AS build-step
 ARG GITHUB_REPO_USERNAME
 ARG GITHUB_REPO_PASSWORD 
 COPY --from=cache /home/gradle/cache_home /home/gradle/.gradle
-WORKDIR $APP_HOME
+WORKDIR /usr/app/
 COPY . .
-RUN chmod +x ./gradlew
-RUN ./gradlew bootJar
-# COPY build.gradle settings.gradle gradlew ${APP_HOME}
-# COPY gradle/ ${APP_HOME}/gradle/
-# RUN chmod +x ./gradlew && ./gradlew dependencies --refresh-dependencies
+RUN gradle bootJar
 
 FROM eclipse-temurin:21-jre-alpine AS prod-step
 ARG USER=nonrootuser
