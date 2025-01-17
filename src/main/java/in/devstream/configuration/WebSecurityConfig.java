@@ -1,5 +1,6 @@
 package in.devstream.configuration;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import lombok.RequiredArgsConstructor;
 
 @EnableWebSecurity
 @Configuration
@@ -38,6 +37,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(customize -> {
                     customize
                             .requestMatchers("/").permitAll()
+                            .requestMatchers("/health").permitAll()
                             .requestMatchers("/login").permitAll()
                             .requestMatchers("/signup").permitAll()
                             .requestMatchers(
@@ -60,14 +60,14 @@ public class WebSecurityConfig {
                             .logoutSuccessUrl("/")
                             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
                 })
-                .formLogin(customize -> {
-                    customize
-                            .usernameParameter("email")
-                            .passwordParameter("password")
-                            .loginPage("/login")
-                            .failureUrl("/login?error=true")
-                            .successHandler(authSuccessHandler);
-                })
+//                .formLogin(customize -> {
+//                    customize
+//                            .usernameParameter("email")
+//                            .passwordParameter("password")
+//                            .loginPage("/login")
+//                            .failureUrl("/login?error=true")
+//                            .successHandler(authSuccessHandler);
+//                })
                 .httpBasic(Customizer.withDefaults());
 
         return httpSecurity.build();

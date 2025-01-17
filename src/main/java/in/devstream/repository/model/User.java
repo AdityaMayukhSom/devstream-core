@@ -1,4 +1,4 @@
-package in.devstream.model;
+package in.devstream.repository.model;
 
 import java.util.ArrayList;
 import java.util.Collection;

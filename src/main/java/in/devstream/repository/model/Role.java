@@ -1,4 +1,4 @@
-package in.devstream.model;
+package in.devstream.repository.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,8 +7,7 @@ import jakarta.persistence.Index;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 @Data
 @Entity
@@ -24,7 +23,7 @@ public class Role {
     // https://docs.jboss.org/hibernate/orm/3.5/reference/en/html/persistent-classes.html
     // All persistent classes must have a default constructor (which can be non-public) 
     // so that Hibernate can instantiate them using Constructor.newInstance().
-    private Role() {
+    public Role() {
         this("VIEWER");
     }
 

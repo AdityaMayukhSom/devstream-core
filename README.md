@@ -20,6 +20,8 @@ Then source the environment variables using the `read-env-file.ps1` script found
 using the command `Read-Env-File .env`.  This is required as we use environment variables in the `application.yml`
 file, but not required in case of docker compose as it can directly use the env file using `env_file` property.
 
+To have `Read-Enf-File` or `New-Env-Example` command working in powershell, we first need to source the scripts using `. ./scripts/read-env-file.ps1` or `. ./scripts/new-env-example.ps1` command.
+
 ```sh
 ./gradlew build --continuous
 ./gradlew bootRun

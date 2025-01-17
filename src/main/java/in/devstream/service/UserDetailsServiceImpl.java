@@ -1,7 +1,7 @@
 package in.devstream.service;
 
-import java.util.Collection;
-
+import in.devstream.repository.UserRepository;
+import in.devstream.repository.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,8 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import in.devstream.model.User;
-import in.devstream.repository.UserRepository;
+import java.util.Collection;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
