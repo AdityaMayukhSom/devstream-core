@@ -13,6 +13,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - GITHUB_REPO_USERNAME
+        - GITHUB_REPO_PASSWORD
     env_file:
       - .env
     ports:
