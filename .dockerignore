@@ -1,4 +1,9 @@
 ./build
 /src/resources/application-development.yml
 .gradle
+README.md
 HELP.md
+.env*
+docker-compose.yml
+Dockerfile
+.dockerignore

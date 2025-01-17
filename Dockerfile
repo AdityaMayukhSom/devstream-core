@@ -1,4 +1,4 @@
-FROM gradle:8-jdk21-alpine as cache
+FROM gradle:8-jdk21-alpine AS cache
 ENV GRADLE_USER_HOME /home/gradle/cache_home
 ENV APP_HOME=/usr/app/
 RUN mkdir -p ${GRADLE_USER_HOME}
